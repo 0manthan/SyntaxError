@@ -6,7 +6,7 @@ This project is a web-based store placement and heatmap visualization tool using
 2. A **heatmap** representation of store foot traffic density.
 3. The ability to **download a sample CSV** to understand the required format.
    
-##OUTPUT
+## OUTPUT
 ![image](https://github.com/user-attachments/assets/6e725326-7ea5-4786-b065-d0774f524c10)
 ![image](https://github.com/user-attachments/assets/d7bb6b5d-0b95-4997-a691-eebfa28a5a02)
 ![image](https://github.com/user-attachments/assets/56fa6d82-7e0e-437b-92ae-d044a931049f)
