@@ -1,0 +1,157 @@
+
+/* Glassmorphism Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Headings */
+h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* File Input */
+input[type="file"] {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    color: #fff;
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Map and Heatmap */
+#map, #heatmap {
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+
+/* Heatmap Custom Styling */
+.leaflet-heatmap-layer {
+    filter: brightness(1.2);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">📍 Dark Store Placement & Heatmap</h2>
+        <div class="mb-3">
+            <label class="form-label">Upload CSV File (Latitude, Longitude, Location)</label>
+            <input type="file" id="csvFileInput" class="form-control">
+        </div>
+        <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary" onclick="processCSV()">Generate Store Map</button>
+            <button class="btn btn-danger" onclick="generateHeatmap()">Generate Heatmap</button>
+        </div>
+        <div id="map" class="mt-4"></div>
+        <h3 class="text-center mt-4">🔥 Heatmap Representation</h3>
+        <div id="heatmap" class="mt-2"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+    <script>
+        let map = L.map('map').setView([18.5204, 73.8567], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        
+        let heatmapMap = L.map('heatmap').setView([18.5204, 73.8567], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(heatmapMap);
+        
+        let selectedLocations = [];
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            const from = turf.point([lon1, lat1]);
+            const to = turf.point([lon2, lat2]);
+            return turf.distance(from, to, { units: 'kilometers' });
+        }
+
+        function processCSV() {
+            const fileInput = document.getElementById("csvFileInput");
+            if (!fileInput.files.length) return alert("Please upload a CSV file");
+            
+            Papa.parse(fileInput.files[0], {
+                header: true,
+                skipEmptyLines: true,
+                complete: function (result) {
+                    let data = result.data;
+                    selectedLocations = [];
+
+                    data.forEach(row => {
+                        let lat = parseFloat(row.Latitude);
+                        let lon = parseFloat(row.Longitude);
+                        let location = row.Location;
+
+                        if (selectedLocations.every(sel => haversine(lat, lon, sel.lat, sel.lon) >= 3)) {
+                            selectedLocations.push({ lat, lon, location });
+                            L.marker([lat, lon]).addTo(map)
+                                .bindPopup(<b>${location}</b><br>Lat: ${lat}, Lon: ${lon});
+                        }
+                    });
+                }
+            });
+        }
+
+        function generateHeatmap() {
+            heatmapMap.eachLayer(layer => {
+                if (layer instanceof L.Circle) {
+                    heatmapMap.removeLayer(layer);
+                }
+            });
+
+            selectedLocations.forEach(loc => {
+                let intensity = Math.random() * 0.7 + 0.3; // Random intensity between 0.3 - 1
+                let radius = intensity * 200; // Scale radius
+
+                L.circle([loc.lat, loc.lon], {
+                    color: 'red',
+                    fillColor: 'red',
+                    fillOpacity: intensity,
+                    radius: radius
+                }).addTo(heatmapMap);
+            });
+        }
+    </script>
+</body>
+</html>
