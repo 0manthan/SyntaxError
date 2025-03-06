@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Store Placement & Heatmap visualization with K-Means clustering for optimal store placement analysis.">
+    <title>Store Placement & Heatmap</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts (Optional for better typography) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Meta Tags for SEO -->
+    <meta property="og:title" content="Store Placement & Heatmap">
+    <meta property="og:description" content="A tool for visualizing store placement and analyzing foot traffic with heatmaps and clustering algorithms.">
+    <meta property="og:image" content="thumbnail.jpg">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container mt-4">
+        
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1 class="text-center">Store Placement & Heatmap</h1>
+            <p class="text-center text-muted">Visualize store locations, analyze foot traffic, and optimize placement with heatmaps and clustering.</p>
+        </header>
+
+        <!-- File Upload Section -->
+        <section class="file-upload">
+            <div class="form-group">
+                <label for="csvFileInput" class="form-label">Upload CSV File</label>
+                <div id="drop-zone" class="drop-zone">
+                    Drag & drop CSV file here or <strong>click to select</strong>
+                </div>
+                <input type="file" id="csvFileInput" accept=".csv" class="form-control-file" style="display: none;">
+            </div>
+        </section>
+
+        <!-- Control Buttons -->
+        <div class="button-group text-center">
+            <button onclick="processCSV()" class="btn btn-primary btn-lg">Generate Store Map</button>
+            <button onclick="generateHeatmap()" class="btn btn-success btn-lg">Generate Heatmap</button>
+        </div>
+
+        <!-- Map Section -->
+        <section class="map-section mt-4">
+            <div id="map" class="map-container"></div>
+        </section>
+
+        <!-- Heatmap Section -->
+        <section class="heatmap-section mt-4">
+            <h3 class="text-center">Heatmap Representation</h3>
+            <div id="heatmap" class="heatmap-container"></div>
+        </section>
+        
+    </div>
+
+    <!-- External JS Libraries -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
