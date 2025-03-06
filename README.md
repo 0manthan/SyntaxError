@@ -3,9 +3,11 @@
 This repository contains the frontend code for a tool designed to optimize store placements based on foot traffic, population density, and demand patterns. The tool includes interactive features like map visualizations and a heatmap, along with a file upload zone for data integration.
 
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/6e725326-7ea5-4786-b065-d0774f524c10)
-![image](https://github.com/user-attachments/assets/d7bb6b5d-0b95-4997-a691-eebfa28a5a02)
-![image](https://github.com/user-attachments/assets/56fa6d82-7e0e-437b-92ae-d044a931049f)
+![Screenshot 2025-03-06 105247](https://github.com/user-attachments/assets/f1153bf9-d2d0-42b7-9220-1b2ad5fb2107)
+### Stores:
+![Screenshot 2025-03-06 105410](https://github.com/user-attachments/assets/44b731ca-d8bd-46ff-a84a-96a8be48f1a7)
+### Heatmap:
+![Screenshot 2025-03-06 105514](https://github.com/user-attachments/assets/6a92af29-700b-4ff2-9f36-bd5d6c247204)
 
 ## Features
 
