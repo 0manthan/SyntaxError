@@ -1,122 +1,228 @@
-/* General Layout */
-/* General Layout */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: url('https://wallpapercave.com/wp/wp4411792.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #ffffff;
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Reset Defaults */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* Container for content */
-.container {
-    width: 80%;
-    margin: 0 auto;
+/* 🎨 Light Sky-Blue Gradient Background */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #dff6ff, #bae6fd, #a5d8ff);
+    background: url('https://wallpapercave.com/wp/wp4411792.jpg') no-repeat center center fixed;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     padding: 20px;
+    overflow-x: hidden;
 }
 
-/* Heading Styles */
-h2 {
+/* 🌟 Glassmorphic Container */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-h3 {
-    font-size: 24px;
-    color: #333;
-    margin-top: 30px;
-    text-align: center;
+/* Header Section */
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f4c75;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-/* Map Container */
-#map, #heatmap {
+.page-header p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* File Upload Section */
+.file-upload {
+    margin: 30px auto;
     width: 100%;
-    height: 500px;
-    border: 2px solid #ddd;
-    margin: 20px 0;
-    border-radius: 8px;
 }
 
-/* Drop Zone (for file upload) */
-#drop-zone {
+.drop-zone {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
-
-#drop-zone:hover {
-    background-color: #0056b3;
-}
-
-#drop-zone p {
+    height: 160px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px dashed rgba(0, 132, 255, 0.5);
+    color: #0f4c75;
     font-size: 18px;
-    text-align: center;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* File Input Style */
-#csvFileInput {
-    display: none;
+.drop-zone:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
 }
 
-/* Buttons */
+.drop-zone strong {
+    text-decoration: underline;
+}
+
+/* 🚀 Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+/* ⚡ Modern Light Blue Buttons */
 button {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
     color: white;
     border: none;
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: 14px 26px;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-    width: calc(50% - 20px);
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 16px rgba(0, 132, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
-    background-color: #218838;
+    background: linear-gradient(135deg, #0984e3, #0a74da);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 132, 255, 0.4);
 }
 
-/* Popup Styling */
+/* 🗺 Map & Heatmap Sections */
+.map-section,
+.heatmap-section {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.map-container,
+.heatmap-container {
+    width: 100%;
+    height: 500px;
+    border: 2px solid rgba(0, 132, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 📍 Section Titles */
+h3 {
+    font-size: 24px;
+    color: #0f4c75;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 🔵 Leaflet Popup Styles */
 .leaflet-popup-content {
     font-size: 14px;
     line-height: 1.6;
+    font-weight: 500;
 }
 
 .leaflet-popup-content b {
-    color: #007bff;
+    color: #0984e3;
 }
 
-/* Cluster Marker Styling */
+/* 🔥 Cluster Marker Styling */
 .leaflet-div-icon {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid #28a745;
-    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #0984e3;
+    padding: 6px;
     border-radius: 50%;
     font-size: 16px;
-    color: #28a745;
+    font-weight: bold;
+    color: #0984e3;
 }
 
-/* Heatmap Control Container */
+/* 🎛 Heatmap Controls */
 #heatmapControl {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #fff;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     z-index: 1000;
+}
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .page-header p {
+        font-size: 1.1rem;
+    }
+
+    .drop-zone {
+        height: 140px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .map-container, .heatmap-container {
+        height: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 98%;
+    }
+
+    .drop-zone {
+        height: 120px;
+        font-size: 14px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .map-container, .heatmap-container {
+        height: 400px;
+    }
 }
